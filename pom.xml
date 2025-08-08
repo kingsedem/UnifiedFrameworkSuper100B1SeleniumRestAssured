@@ -18,7 +18,11 @@
     <testng.version>7.11.0</testng.version>
     <apache-poi.version>5.4.1</apache-poi.version>
     <log4j.version>2.25.1</log4j.version>
-    <jackson-databind>2.19.2</jackson-databind>
+    <jackson-databind.version>2.19.2</jackson-databind.version>
+    <maven.surfire.pluggin.version>3.5.3</maven.surfire.pluggin.version>
+    <java.source.version>17</java.source.version>
+    <java.target.version>17</java.target.version>
+    <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
   </properties>
   <!-- Add allure-bom to dependency management to ensure correct versions of all the dependencies are used -->
   <dependencyManagement>
@@ -76,11 +80,11 @@
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-    <dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi-ooxml</artifactId>
-      <version>${apache-poi.version}</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.apache.poi</groupId>-->
+<!--      <artifactId>poi-ooxml</artifactId>-->
+<!--      <version>${apache-poi.version}</version>-->
+<!--    </dependency>-->
 
     <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
     <dependency>
@@ -96,12 +100,42 @@
       <version>${log4j.version}</version>
     </dependency>
 
+
     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>${jackson-databind}</version>
+      <version>${jackson-databind.version}</version>
     </dependency>
-
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.plugin.version}</version>
+<!--        <configuration>-->
+<!--          <suiteXmlFiles>-->
+<!--            <suiteXmlFile>testng.xml</suiteXmlFile>-->
+<!--          </suiteXmlFiles>-->
+<!--        </configuration>-->
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven.surfire.pluggin.version}</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
+
+        <!--https://maven.apache.org/surefire/maven-surefire-plugin/examples/testng.html -->
+        <!--https://testng.org/#_testng_xml -->
+

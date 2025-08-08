@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Demo shop Test Automation">
+    <test name="E2E automation">
+        <classes>
+            <class name="in.podtest.E2ECase">
+                <methods>
+                    <include name="testLoginFlow"> </include>
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+</suite>
