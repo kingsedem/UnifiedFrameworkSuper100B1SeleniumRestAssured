@@ -1,18 +1,12 @@
 package in.podtest;
 
-import in.podtest.pom.HomePOM;
 import in.podtest.pom.LoginPOM;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class E2ECase {
 
@@ -25,7 +19,7 @@ public class E2ECase {
     @BeforeTest
     public void preStep(){
         wd = new ChromeDriver();
-//        wd.get("https://demo.evershop.io/account/login");
+//      wd.get("https://demo.evershop.io/account/login");
     }
 
     @Test
@@ -48,7 +42,6 @@ public class E2ECase {
     @AfterTest
     public void postSteps(){
         wd.close();
-
     }
 
     //Test case manual

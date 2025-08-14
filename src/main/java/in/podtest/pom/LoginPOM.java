@@ -17,6 +17,7 @@ public class LoginPOM {
         wd.get(newURL);
         return this;
     }
+
     public LoginPOM(WebDriver wd){
         this.wd = wd;
     }
