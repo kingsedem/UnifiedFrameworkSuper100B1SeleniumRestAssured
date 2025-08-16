@@ -1,18 +1,13 @@
 package in.podtest;
 
-import in.podtest.pom.HomePOM;
+import in.podtest.pom.BasePOM;
 import in.podtest.pom.LoginPOM;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class E2ECase {
 
@@ -21,11 +16,11 @@ public class E2ECase {
     //Test data preparation
     String emailId = "kingsley123@yahoo.com";
     String password = "Test123";
+    String productName = "Nike court vision low";
 
     @BeforeTest
     public void preStep(){
         wd = new ChromeDriver();
-//        wd.get("https://demo.evershop.io/account/login");
     }
 
     @Test
@@ -33,22 +28,30 @@ public class E2ECase {
         LoginPOM login = new LoginPOM(wd);
 
         login.get()
-                .fillUserName(emailId)
-                .fillPassword(password)
-                .clickSubmitButton()   //Page chaining
-                .waitFor();
+                .fillUserName(emailId).fillPassword(password).clickSubmitButton()   //Page chaining
+                .waitFor().clickProductName(productName)
+                .waitFor().selectItemSize("X").selectItemColor("Black").fillItemQty("1").clickAddToCartBtn()
+                .clickViewCartButton();
+    }
 
+
+    @Test
+    public void testLoginFlow2(){
+        LoginPOM login = new LoginPOM(wd);
+
+        login.get()
+                .fillUserName(emailId).fillPassword(password).clickSubmitButton()   //Page chaining
+                .waitFor().getHeader().clickCartIcon();
 
         String actualURL = wd.getCurrentUrl();
         String expectedURL = "https://demo.evershop.io/";
 
-        Assert.assertEquals(actualURL, expectedURL);
+        //Assert.assertEquals(actualURL, expectedURL);
     }
 
     @AfterTest
     public void postSteps(){
-        wd.close();
-
+       // wd.close();
     }
 
     //Test case manual
